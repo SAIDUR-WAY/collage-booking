@@ -1,7 +1,18 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { authContext } from "../Provider/authProvider";
 
 
 const NaveBar = () => {
+  const [name, setName]= useState(false)   
+  const {user, logOut} = useContext(authContext);
+  // console.log(user)
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error.message))
+  }
 
   const navItems = (
     <>
@@ -21,8 +32,11 @@ const NaveBar = () => {
         <Link className='hover:text-white' to='/register'>Register</Link>
     </li>
   
+   {
+    !user &&
     <button className='btn  bg-transparent btn-sm m-0'><Link to='/login' className=' text-decoration-none'>SignIn</Link></button>
 
+   }
 
     </>
   )
@@ -38,7 +52,7 @@ const NaveBar = () => {
       {navItems}
       </ul>
     </div>
-    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+    <Link to='/' className="btn btn-ghost normal-case text-xl">Collage Booking</Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -46,7 +60,22 @@ const NaveBar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+
+  {
+              user &&
+              <> <span className={name? 'showName absolute right-80 top-14 z-50 font-bold': 'hidden'}><span>{user?.displayName}</span></span>
+              <div onMouseEnter={()=>setName(true)}
+                  onMouseLeave={()=>setName(false)}
+                className='d-inline'><img className='rounded-circle'  style={{width: '40px', height: '40px'}} src={user && user.photoURL} alt="" /></div>
+              <button onClick={handleLogOut} className='btn hover:bg-[#007CFF]  bg-transparent btn-sm mx-2'><Link className=' text-decoration-none'>LogOut</Link></button>
+
+               </> 
+               
+
+            }
+              <div className="form-control">
+      <input type="text" placeholder="Search collage" className="input w-12 md:w-auto" />
+    </div>
   </div>
 </div>
             

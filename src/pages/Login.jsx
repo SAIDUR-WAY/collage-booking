@@ -1,23 +1,45 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImage from '../assets/loginImage.jpg'
+import { authContext } from "../Provider/authProvider";
 const Login = () => {
     const [show, setShow] = useState(false)
     const [error, setError] = useState('')
+       const {signIn} = useContext(authContext);
+       const navigate = useNavigate()
+       const location =useLocation()
+       const from = location?.state?.from?.pathname || '/';
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+
+ const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+  const onSubmit = (data) => {
+    setError('')
+    signIn(data.email, data.password)
+    .then(result => {
+      const logedUser = result.user;
+      console.log(logedUser)
+      navigate(from, {replace: true})
+    })
+    .catch(err => {
+      console.log(err.message)
+      setError(err.message)
+    })
+  }
   
-    console.log(watch("example")); // watch input value by passing the name of it
+    // console.log(watch("example")); // watch input value by passing the name of it
 
     return (
         <div>
       <div className="hero w-full min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left w-1/4 md:w-1/2 ">
-            <img src={loginImage} alt="RegistrImage" />
+            <img src={loginImage} alt="LoginImage" />
           </div>
           <div className="card flex-shrink-0 md:w-1/2   shadow-2xl bg-base-100">
             <h1 className="text-5xl pb-4 font-semibold  text-center pt-4 ">
