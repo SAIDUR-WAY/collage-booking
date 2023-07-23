@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.input {
-    border-radius: none !important;
+.fall, .spring, .summer{
+    color: red;
 }
