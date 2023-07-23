@@ -11,6 +11,7 @@ import MyCollage from "../pages/MyCollage";
 import Login from "../pages/login";
 import Register from "../pages/Register";
 import PrivateRoute from "../PrivateRoutes/PrivateRoute";
+import CollageDetails from "../component/CollageDetails";
 
 
 const router = createBrowserRouter([
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
         {
             path: '/register',
             element: <Register></Register>
+        },
+        {
+          path: '/collageDetails/:id',
+          element: <CollageDetails></CollageDetails>,
+          loader: ({params}) => fetch(`http://localhost:5000/collages/${params.id}`)
         }
       ]
     },

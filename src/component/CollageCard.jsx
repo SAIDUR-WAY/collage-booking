@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const CollageCard = ({ collage }) => {
     const {_id, college_name, college_image, admission_dates, events, research_history, sports } = collage;
   
@@ -45,7 +47,7 @@ const CollageCard = ({ collage }) => {
             </div>
             <hr></hr>
             <div className="card-actions ">
-              <button className="btn  w-full hover:bg-[#044080] bg-[#007CFF]">View Details</button>
+              <button className="btn  w-full hover:bg-[#044080] bg-[#007CFF]"><Link to={`/collageDetails/${_id}`}>View Details</Link> </button>
             </div>
           </div>
         </div>
