@@ -4,13 +4,14 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+console.log(import.meta.env.VITE_appId)
 const firebaseConfig = {
-  apiKey: "AIzaSyDA-NAmw_xG9QemTfgDpF00pHfWQLESN8c",
-  authDomain: "collage-booking-3abf9.firebaseapp.com",
-  projectId: "collage-booking-3abf9",
-  storageBucket: "collage-booking-3abf9.appspot.com",
-  messagingSenderId: "1073830092719",
-  appId: "1:1073830092719:web:e88420fa67a99ef180195a"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase
