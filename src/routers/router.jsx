@@ -13,6 +13,7 @@ import Register from "../pages/Register";
 import PrivateRoute from "../PrivateRoutes/PrivateRoute";
 import CollageDetails from "../component/CollageDetails";
 import StudentAdmission from "../component/StudentAdmission";
+import SearchResult from "../component/SearchResult";
 
 
 const router = createBrowserRouter([
@@ -48,12 +49,18 @@ const router = createBrowserRouter([
         {
           path: '/collageDetails/:id',
           element: <PrivateRoute><CollageDetails></CollageDetails></PrivateRoute>,
-          loader: ({params}) => fetch(`https://collage-booking-server-sigma.vercel.app/collages/${params.id}`)
+          loader: ({params}) => fetch(`https://collage-booking-server-sigma.vercel.app/${params.id}`)
         },
         {
           path: '/studentAdmission',
           element: <PrivateRoute><StudentAdmission></StudentAdmission></PrivateRoute>,
+          
 
+        },
+        {
+          path: '/searchResult/:text',
+          element: <SearchResult></SearchResult>,
+          loader: ({params}) => fetch(`https://collage-booking-server-sigma.vercel.app/collage/?search=${params.text}`)
         }
       ]
     },
