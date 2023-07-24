@@ -7,7 +7,7 @@ const useCollages = () => {
      const [loading, setLoading] = useState(true)
      useEffect(()=>{
 
-                    fetch('http://localhost:5000/collages')
+                    fetch('https://collage-booking-server-sigma.vercel.app/collages')
                .then(res => res.json())
                .then(data => {
                     setCollages(data)

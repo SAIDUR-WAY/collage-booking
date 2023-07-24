@@ -9,6 +9,7 @@ const SomeCollage = () => {
     return (
         <>
         <section className="mt-10 mb-10 pt-10 pb-10 border-b-4 border-t-4 rounded-3xl border-[#adb1ab] bg-[#E9F2E7]">
+        <h3 className="text-3xl text-center font-bold pb-10">Some Collage</h3>
         <div className="grid grid-cols-3 gap-4 justify-center">
            {
             displayedCollages.map((collage) => <CollageCard

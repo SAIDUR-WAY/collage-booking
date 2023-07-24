@@ -7,7 +7,7 @@ const CollageCard = ({ collage }) => {
       <>
         <div className="card card-compact w-96 mx-auto bg-base-100 shadow-xl">
           <figure className="h-64">
-            <img src={college_image} alt="Shoes" />
+            <img src={college_image} height={"254px"}  alt="Shoes" />
           </figure>
           <div className="card-body">
          
